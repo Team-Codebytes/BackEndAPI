@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var db = require('./models/index');
 var commonUserRoute = require('./routes/commonuserRoute');
+var enterpriceUserRoute = require('./routes/enterpriceUserRoute');
 
 
 app.use(bodyParser.json());
@@ -15,7 +16,8 @@ app.get("/", function(req, res){
 });
 
 
-app.use("/api/commonuser", commonUserRoute);
+app.use("/API/CommonUser", commonUserRoute);
+app.use("/API/EnterpriceUser", enterpriceUserRoute);
 
 
 app.listen(8081, function () {

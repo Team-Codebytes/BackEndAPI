@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$.getJSON("/api/commonuser")
+	$.getJSON("/api/enterpriceuser")
 	.then(Users)
 	.catch(function(err){
 		console.log(err);
@@ -28,7 +28,7 @@ function createUser(){
 		FirstName: firstNameInput,
 		LastName: lastNameInput,
 		Email_id: email_idInput,
-		password: passwordInput,
+		Password: passwordInput,
 		Address: addressInput,
 		State: stateInput,
 		City: cityInput,
@@ -36,11 +36,15 @@ function createUser(){
 		Phone_no: phone_noInput
 	})
 	.then(function(newUser){
-		$("#username").val("");
-	 	$("#password").val("");
-		$("#email_id").val("");
-		$("#phn").val("");
+		$('#firstName').val("");
+		$('#lastName').val("");
+		$('#email_id').val("");
+		$("#password").val("");
 		$("#address").val("");
+		$("#state").val("");
+		$("#city").val("");
+		$('#pincode').val("");
+		$('#phone_no').val("");
 		addUser(newUser);
 	})
 	.catch(function(err){
@@ -49,7 +53,43 @@ function createUser(){
 }
 
 function addUser(newUser){
-	var newTodo = $('<li>'+ newUser.FirstName+ ' </li>');
+	var newTodo = $('<li>'+ newUser.Email_id+ ' </li>');
 	newTodo.data("id", newUser._id);
 	$('.list').append(newTodo);
+}
+
+function createEnterprice(){
+	var firstNameInput = $('#firstName').val();
+	var email_idInput = $('#email_id').val();
+	var passwordInput = $("#password").val();
+	var addressInput = $("#address").val();
+	var stateInput = $("#state").val();
+	var cityInput = $("#city").val();
+	var pincodeInput = $('#pincode').val();
+	var phone_noInput= $('#phone_no').val();
+	//alert(userInput);
+	$.post("/api/enterpriceuser", {
+		CompanyName: firstNameInput,
+		Email_id: email_idInput,
+		Password: passwordInput,
+		Address: addressInput,
+		State: stateInput,
+		City: cityInput,
+		Pincode: pincodeInput,
+		Phone_no: phone_noInput
+	})
+	.then(function(newUser){
+		addUser(newUser);
+		$('#firstName').val("");
+		$('#email_id').val("");
+		$("#password").val("");
+		$("#address").val("");
+		$("#state").val("");
+		$("#city").val("");
+		$('#pincode').val("");
+		$('#phone_no').val("");
+	})
+	.catch(function(err){
+		console.log(err);
+	})
 }

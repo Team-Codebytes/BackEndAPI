@@ -8,5 +8,12 @@ router.route("/")
 	.post(helpers.createCommonUser)
 
 
+router.route("/:Email")
+	.get(helpers.getLimitedDetailCommonUser)
+
+router.route("/:Email/All")
+	.get(helpers.getAllDetailCommonUser)
+
+
 
 module.exports = router;
