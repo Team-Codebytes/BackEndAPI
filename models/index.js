@@ -9,3 +9,4 @@ mongoose.Promise = Promise;
 module.exports.commonuser = require('./commonuser');
 module.exports.workers = require('./workers');
 module.exports.enterpriceuser = require('./enterpriceuser');
+module.exports.rating = require('./rating');

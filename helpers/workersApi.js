@@ -1,8 +1,7 @@
 var db = require('../models/index');
 
-
-exports.getCommonUsers = function (req, res) {
-  	db.commonuser.find()
+exports.getWorkers = function (req, res) {
+  	db.workers.find()
   	.then(function(users){
   		res.json(users);
   	})
@@ -11,8 +10,8 @@ exports.getCommonUsers = function (req, res) {
   	})
 };
 
-exports.createCommonUser = function(req, res){
-	db.commonuser.create(req.body)
+exports.createWorker = function(req, res){
+	db.workers.create(req.body)
 	.then(function(newUser){
 		res.status(201).json(newUser);
 	})
@@ -21,8 +20,8 @@ exports.createCommonUser = function(req, res){
   	})
 };
 
-exports.getLimitedDetailCommonUser = function(req, res){
-  db.commonuser.findOne({Email_id: req.params.Email},{Address:0, State:0, City:0, Pincode:0, Phone_no:0})
+exports.getLimitedDetailWorker = function(req, res){
+  db.workers.findOne({Phone_no: req.params.phone_no},{Address:0, State:0, City:0, Pincode:0, Phone_no:0})
   .then(function(newUser){
     res.status(201).json(newUser);
   })
@@ -31,8 +30,8 @@ exports.getLimitedDetailCommonUser = function(req, res){
     })
 };
 
-exports.getAllDetailCommonUser = function(req, res){
-  db.commonuser.findOne({Email_id: req.params.Email})
+exports.getAllDetailWorker = function(req, res){
+  db.workers.findOne({Phone_no: req.params.phone_no})
   .then(function(newUser){
     res.status(201).json(newUser);
   })
