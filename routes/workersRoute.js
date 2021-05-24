@@ -3,16 +3,16 @@ var router = express.Router();
 var db = require('../models/index');
 var helpers = require('../helpers/workersApi');
 
-router.route("/")
-	.get(helpers.getWorkers)
+router.route("/createWorker")
 	.post(helpers.createWorker)
 
 
-router.route("/:phone_no")
-	.get(helpers.getLimitedDetailWorker)
+router.route("/Login")
+	.post(helpers.getLimitedDetailWorker)
 
-router.route("/:phone_no/All")
-	.get(helpers.getAllDetailWorker)
+router.route("/")
+	.get(helpers.getWorkers)
+	.post(helpers.getAllDetailWorker)
 
 
 

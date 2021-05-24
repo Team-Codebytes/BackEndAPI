@@ -22,7 +22,7 @@ exports.createCommonUser = function(req, res){
 };
 
 exports.getLimitedDetailCommonUser = function(req, res){
-  db.commonuser.findOne({Email_id: req.params.Email},{Address:0, State:0, City:0, Pincode:0, Phone_no:0})
+  db.commonuser.findOne({Phone_no: req.body.phone_no, Password: req.body.password},{Address:0, State:0, City:0, Pincode:0, Aadhar_Card:0})
   .then(function(newUser){
     res.status(201).json(newUser);
   })
@@ -32,7 +32,7 @@ exports.getLimitedDetailCommonUser = function(req, res){
 };
 
 exports.getAllDetailCommonUser = function(req, res){
-  db.commonuser.findOne({Email_id: req.params.Email})
+  db.commonuser.findOne({Phone_no: req.body.phone_no})
   .then(function(newUser){
     res.status(201).json(newUser);
   })

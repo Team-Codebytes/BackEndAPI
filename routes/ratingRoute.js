@@ -3,13 +3,16 @@ var router = express.Router();
 var db = require('../models/index');
 var helpers = require('../helpers/ratingApi');
 
+
 router.route("/")
-	.get(helpers.getWorkersRatings)
+	.post(helpers.getWorkerRatings)
+
+
+router.route("/createRating")
 	.post(helpers.createWorkerRating)
 
 
-router.route("/:phone_no")
-	.get(helpers.getWorkerRatings)
+
 
 
 
