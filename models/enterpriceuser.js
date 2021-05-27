@@ -34,6 +34,10 @@ var enterpriceuserSchema = new mongoose.Schema({
 		type: Number,
 		require: "Phone number cannot be blank"
 	},
+	user_type:{
+		type: String,
+		default: 'enterpriceuser'
+	},
 	date: {
 		type: Date,
 		default: Date.now

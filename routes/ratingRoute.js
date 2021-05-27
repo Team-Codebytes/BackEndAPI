@@ -8,12 +8,8 @@ router.route("/")
 	.post(helpers.getWorkerRatings)
 
 
-router.route("/createRating")
+router.route("/create")
 	.post(helpers.createWorkerRating)
-
-
-
-
 
 
 module.exports = router;

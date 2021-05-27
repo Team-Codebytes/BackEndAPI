@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('../models/index');
 var helpers = require('../helpers/workersApi');
 
-router.route("/createWorker")
+router.route("/create")
 	.post(helpers.createWorker)
 
 

@@ -4,6 +4,8 @@ var helpers = require('../helpers/enterpriceuserApi');
 
 router.route("/")
 	.get(helpers.getEnterpriceUsers)
+
+router.route("/create")
 	.post(helpers.createEnterpriceUser)
 
 router.route("/:email")

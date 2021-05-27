@@ -24,7 +24,7 @@ function createUser(){
 	var pincodeInput = $('#pincode').val();
 	var phone_noInput= $('#phone_no').val();
 	//alert(userInput);
-	$.post("/api/commonuser", {
+	$.post("/api/commonuser/create", {
 		FirstName: firstNameInput,
 		LastName: lastNameInput,
 		Email_id: email_idInput,
@@ -68,7 +68,7 @@ function createEnterprice(){
 	var pincodeInput = $('#pincode').val();
 	var phone_noInput= $('#phone_no').val();
 	//alert(userInput);
-	$.post("/api/enterpriceuser", {
+	$.post("/api/enterpriceuser/create", {
 		CompanyName: firstNameInput,
 		Email_id: email_idInput,
 		Password: passwordInput,

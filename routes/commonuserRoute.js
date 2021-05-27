@@ -8,7 +8,7 @@ router.route("/")
 	.post(helpers.getAllDetailCommonUser)
 
 
-router.route("/createCommonUser")
+router.route("/create")
 	.post(helpers.createCommonUser)
 
 

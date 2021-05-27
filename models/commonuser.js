@@ -41,6 +41,10 @@ var commonuserSchema = new mongoose.Schema({
 		type: String,
 		require: "Aadhar_Card number cannot be blank"
 	},
+	user_type:{
+		type: String,
+		default: 'commonuser'
+	},
 	date: {
 		type: Date,
 		default: Date.now
