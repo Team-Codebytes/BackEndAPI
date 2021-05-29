@@ -11,6 +11,7 @@ router.route("/Login")
 	.post(helpers.getLimitedDetailWorker)
 
 router.route("/")
+	.get(heplers.getWorkers)
 	.post(helpers.getAllDetailWorker)
 
 
