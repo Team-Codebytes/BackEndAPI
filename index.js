@@ -10,6 +10,10 @@ var ratingRoute = require('./routes/ratingRoute');
 var imageRoute = require('./routes/imageRoute');
 
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
+})
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));

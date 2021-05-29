@@ -9,7 +9,7 @@ const methodOverride = require('method-override');
 
 
 const mongoURI = 'mongodb+srv://root:root123@apicluster.i3n9h.mongodb.net/backendapi?retryWrites=true&w=majority';
-
+//const mongoURI = "mongodb://localhost/backendapi";
 const conn = mongoose.createConnection(mongoURI,{
 	useNewUrlParser: true,
 	useUnifiedTopology: true
@@ -42,4 +42,6 @@ const storage = new GridFsStorage({
   }
 });
 
+
 exports.upload = multer({ storage });
+exports.gfs;

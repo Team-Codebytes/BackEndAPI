@@ -58,7 +58,32 @@ router.route("/")
 		}
 	});
 
-
+router.route("/Get")
+	.post(function(req, res){
+		let data;
+		if(req.body.user === "commonuser"){
+			db.profileimg.findOne({"commonUserImg.Phone_no":req.body.Phone_no})
+			.then(function(newUser){
+				console.log(newUser.fileName);
+				helpers.gfs.find({filename: newUser.fileName}).toArray((err, files) => {
+					if(!files[0] || files.length === 0){
+						console.log("filename if condititon "+ files[0]);
+						return res.status(200).json({
+							success: false,
+							message: "No Such File Exist"
+						});
+					}
+					gfs.openDownloadStreamByName(newUser.fileName).pipe(res);
+					console.log("filename "+ files[0]);
+					res.status(200).json({
+						success: true,
+						file: files[0]
+					});
+				});	
+			})
+			.catch(err => res.status(500).json(err))
+		}	
+	});
 
 
 module.exports = router;

@@ -19,3 +19,14 @@ exports.getWorkerRatings = function(req, res){
       res.send(err);
     })
 };
+
+
+exports.updateWorkerRating = function(req, res){
+  db.rating.findOneAndUpdate({"workerRated.Phone_no": req.body.workerRated.Phone_no}, req.body, {new: true})
+  .then(function(newUser){
+    res.status(201).json(newUser);
+  })
+  .catch(function(err){
+      res.send(err);
+    })
+};

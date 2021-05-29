@@ -5,6 +5,7 @@ var helpers = require('../helpers/commonuserApi');
 
 
 router.route("/")
+	.get(helpers.getCommonUsers)
 	.post(helpers.getAllDetailCommonUser)
 
 

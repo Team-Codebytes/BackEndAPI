@@ -11,5 +11,7 @@ router.route("/")
 router.route("/create")
 	.post(helpers.createWorkerRating)
 
+router.route("/update")
+	.post(helpers.updateWorkerRating)
 
 module.exports = router;
