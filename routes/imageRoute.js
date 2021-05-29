@@ -17,7 +17,7 @@ router.route("/")
 					user_type: req.body.user,
 					commonUserImg: {
 						id: req.body.id,
-						Email_id: req.body.email_id
+						Phone_no: req.body.phone_no
 	    			}
 				}
 				db.profileimg.create(file)
