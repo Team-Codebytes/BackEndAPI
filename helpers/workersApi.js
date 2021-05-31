@@ -60,7 +60,7 @@ exports.createWorker = function(req, res){
 exports.getLimitedDetailWorker = function(req, res){
   db.workers.findOne(
     {Phone_no: req.body.phone_no, Password: req.body.password},
-    {Address:0, State:0, City:0, Pincode:0, Work_Category:0, Experience:0, Aadhar_Card:0}
+    {Password: 0, Address:0, State:0, City:0, Pincode:0, Work_Category:0, Experience:0, Aadhar_Card:0}
   )
   .then(function(newUser){
     res.status(201).json(newUser);

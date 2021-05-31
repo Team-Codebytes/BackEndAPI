@@ -44,7 +44,7 @@ exports.createCommonUser = function(req, res){
 };
 
 exports.getLimitedDetailCommonUser = function(req, res){
-  db.commonuser.findOne({Phone_no: req.body.Phone_no, Password: req.body.Password},{Address:0, State:0, City:0, Pincode:0, Aadhar_Card:0})
+  db.commonuser.findOne({Phone_no: req.body.Phone_no, Password: req.body.Password},{Password: 0, Address:0, State:0, City:0, Pincode:0, Aadhar_Card:0})
   .then(function(newUser){
     res.status(201).json(newUser);
   })
