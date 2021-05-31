@@ -8,7 +8,7 @@ var enterpriceUserRoute = require('./routes/enterpriceUserRoute');
 var workersRoute = require('./routes/workersRoute');
 var ratingRoute = require('./routes/ratingRoute');
 var imageRoute = require('./routes/imageRoute');
-var jobpostRoute = require('./routes/jobPostingRoute');
+var jobpostRoute = require('./routes/jobpostingRoute');
 
 
 app.use((req, res, next) => {
