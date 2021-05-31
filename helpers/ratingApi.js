@@ -28,12 +28,34 @@ exports.getWorkerRatings = function(req, res){
 
 
 exports.updateWorkerRating = function(req, res){
-  db.rating.findOne({"workerRated._id": req.body._id}, function(err, newRating){
-    newRating.commonUserRating.push({
-      "id": req.body.commonUser.id,
-      "Phone_no": req.body.commonUser.Phone_no
-    })
+  console.log(req.body);
+  db.rating.findOne({"workerRated.id": req.body.workerRated.id}, function(err, newRating){
+    if(req.body.Star1 != null)
+      newRating.Star1 = req.body.Star1;
+    if(req.body.Star2 != null)
+      newRating.Star2 = req.body.Star2;
+    if(req.body.Star3 != null)  
+      newRating.Star3 = req.body.Star3;
+    if(req.body.Star4 != null)
+      newRating.Star4 = req.body.Star4;
+    if(req.body.Star5 != null)
+      newRating.Star5 = req.body.Star5;
+    if(req.body.Star1 != null)
+      newRating.Avg = req.body.Avg;
+    newRating.Total = req.body.Total;
+    if(req.body.user === "commonuser"){
+      newRating.commonUserRating.push({
+        "id": req.body.id,
+        "Phone_no": req.body.Phone_no
+      })
+    }else if(req.body.user === "enterpriceuser"){
+      newRating.EnterpiceRating.push({
+        "id": req.body.id,
+        "Email_id": req.body.Email_id
+      })
+    }
     newRating.save();
+    console.log(newnewRating);
   })
   .then(function(newUser){
     res.status(201).json(newUser);
