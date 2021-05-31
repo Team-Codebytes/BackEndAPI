@@ -12,9 +12,27 @@ exports.getEnterpriceUsers = function (req, res) {
 };
 
 exports.createEnterpriceUser = function(req, res){
-	db.enterpriceuser.create(req.body)
-	.then(function(newUser){
-		res.status(201).json(newUser);
+	db.phoneno.findOne({Phone_no: req.body.Phone_no})
+  	.then(function(isPhone_no){
+		console.log(isPhone_no)
+		if(isPhone_no == null ){
+			db.enterpriceuser.create(req.body)
+			.then(function(newUser){
+				let phone = {
+					"Phone_no" : newUser.Phone_no
+				}
+				db.phoneno.create(phone)
+				.then(function(newPhone_no){
+					console.log(newPhone_no)
+				})
+				res.status(201).json(newUser);
+			})
+		}else{
+			res.status(200).json({
+				success: false,
+				message: "Phone Number Exist use Another Phone Number"
+			});
+		}
 	})
 	.catch(function(err){
   		res.send(err);

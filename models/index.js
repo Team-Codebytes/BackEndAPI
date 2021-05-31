@@ -13,3 +13,4 @@ module.exports.enterpriceuser = require('./enterpriceuser');
 module.exports.rating = require('./rating');
 module.exports.profileimg = require('./profileImg');
 module.exports.jobposting = require('./jobposting');
+module.exports.phoneno = require('./phoneno');
