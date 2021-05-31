@@ -30,6 +30,9 @@ exports.createWorker = function(req, res){
         .then(function(newPhone_no){
           console.log(newPhone_no)
         })
+        .catch(function(err){
+					res.send(err);
+				})
         db.rating.create(worker)
         .then(function(newRating){
           console.log(newRating)
@@ -37,6 +40,9 @@ exports.createWorker = function(req, res){
             console.log(newWorkerAdded)
           })
         })
+        .catch(function(err){
+					res.send(err);
+				})
         res.status(201).json(newUser);
       })
     }else{

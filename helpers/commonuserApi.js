@@ -26,6 +26,9 @@ exports.createCommonUser = function(req, res){
         .then(function(newPhone_no){
           console.log(newPhone_no)
         })
+        .catch(function(err){
+					res.send(err);
+				})
         res.status(201).json(newUser);
       })
     }else{
