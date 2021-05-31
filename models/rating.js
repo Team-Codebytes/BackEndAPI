@@ -3,25 +3,32 @@ var mongoose = require("mongoose");
 
 var ratingSchema = new mongoose.Schema({
 	Star1: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	Star2: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	Star3: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	Star4: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	Star5: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	Avg: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	Total: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	commonUserRating: [{
     	id:{

@@ -14,6 +14,7 @@ exports.getCommonUsers = function (req, res) {
 exports.createCommonUser = function(req, res){
 	db.commonuser.create(req.body)
 	.then(function(newUser){
+    console.log(newUser)
 		res.status(201).json(newUser);
 	})
 	.catch(function(err){

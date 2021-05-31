@@ -8,6 +8,7 @@ var enterpriceUserRoute = require('./routes/enterpriceUserRoute');
 var workersRoute = require('./routes/workersRoute');
 var ratingRoute = require('./routes/ratingRoute');
 var imageRoute = require('./routes/imageRoute');
+var jobpostRoute = require('./routes/jobPostingRoute');
 
 
 app.use((req, res, next) => {
@@ -31,6 +32,7 @@ app.use("/API/EnterpriceUser", enterpriceUserRoute);
 app.use("/API/Workers", workersRoute);
 app.use("/API/Rating", ratingRoute);
 app.use("/API/Uploads", imageRoute);
+app.use("/API/PostJob", jobpostRoute);
 
 
 

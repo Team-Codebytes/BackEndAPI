@@ -13,6 +13,19 @@ exports.getWorkers = function (req, res) {
 exports.createWorker = function(req, res){
 	db.workers.create(req.body)
 	.then(function(newUser){
+    let worker = {
+      "workerRated" :{
+        "id" : newUser._id,
+        "Phone_no" : newUser.Phone_no
+      }
+    }
+    db.rating.create(worker)
+    .then(function(newRating){
+      console.log(newRating)
+      .then(function(newWorkerAdded){
+        console.log(newWorkerAdded)
+      })
+    })
 		res.status(201).json(newUser);
 	})
 	.catch(function(err){

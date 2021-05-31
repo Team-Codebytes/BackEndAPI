@@ -21,8 +21,9 @@ router.route("/")
 	    			}
 				}
 				db.profileimg.create(file)
-				.then(function(newUser){
-					res.status(201).json(newUser);
+				.then(function(newProfileImg){
+					console.log(newProfileImg)
+					res.status(201).json(newProfileImg);
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user === 'worker'){
@@ -35,8 +36,9 @@ router.route("/")
 	    			}
 				}
 				db.profileimg.create(file)
-				.then(function(newUser){
-					res.status(201).json(newUser);
+				.then(function(newProfileImg){
+					console.log(newProfileImg)
+					res.status(201).json(newProfileImg);
 				})
 				.catch(err => res.status(500).json(err));
 			}else if(req.body.user === 'enterpriceuser'){

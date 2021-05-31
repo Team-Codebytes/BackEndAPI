@@ -17,10 +17,10 @@ var workersSchema = new mongoose.Schema({
 		type: String,
 		require: "Password cannot be blank"
 	},
-	Work_Category:[{
+	Work_Category:{
 		type: String,
 		require: "Work Category cannot be blank"
-	}],
+	},
 	Experience: {
 		type: String,
 		require: "Experience cannot be blank"

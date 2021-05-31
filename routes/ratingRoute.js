@@ -8,8 +8,8 @@ router.route("/")
 	.post(helpers.getWorkerRatings)
 
 
-router.route("/create")
-	.post(helpers.createWorkerRating)
+// router.route("/create")
+// 	.post(helpers.createWorkerRating)
 
 router.route("/update")
 	.post(helpers.updateWorkerRating)
