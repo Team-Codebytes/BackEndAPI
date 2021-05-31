@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models/index');
-var helpers = require('../helpers/jobpostingAPi');
+var helpers = require('../helpers/jobpostingApi');
 
 
 router.route("/")
