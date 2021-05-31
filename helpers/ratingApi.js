@@ -55,7 +55,7 @@ exports.updateWorkerRating = function(req, res){
       })
     }
     newRating.save();
-    console.log(newnewRating);
+    console.log(newRating);
   })
   .then(function(newUser){
     res.status(201).json(newUser);
