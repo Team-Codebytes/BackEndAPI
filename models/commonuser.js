@@ -48,6 +48,14 @@ var commonuserSchema = new mongoose.Schema({
 	date: {
 		type: Date,
 		default: Date.now
+	},
+	Profileimg: {
+		type: String,
+		default:""
+	},
+	Aadharimg: {
+		type: String,
+		default:""
 	}
 });
 

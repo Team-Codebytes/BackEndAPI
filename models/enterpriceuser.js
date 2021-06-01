@@ -41,6 +41,12 @@ var enterpriceuserSchema = new mongoose.Schema({
 	date: {
 		type: Date,
 		default: Date.now
+	},
+	Profileimg: {
+		type: String
+	},
+	Aadharimg: {
+		type: String
 	}
 });
 
