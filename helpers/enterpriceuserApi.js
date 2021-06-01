@@ -53,7 +53,7 @@ exports.getEnterpriceUser = function(req, res){
 };
 
 exports.getLimitedDetailEnterpriceUser = function(req, res){
-	db.enterpriceuser.findOne({Email_id: req.params.Email, Password: req.body.Password},{Password: 0, Address:0, State:0, City:0, Pincode:0})
+	db.enterpriceuser.findOne({Email_id: req.body.Email, Password: req.body.Password},{Password: 0, Address:0, State:0, City:0, Pincode:0})
 	.then(function(newUser){
 	  res.status(201).json(newUser);
 	})
