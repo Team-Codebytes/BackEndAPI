@@ -71,7 +71,8 @@ exports.getLimitedDetailWorker = function(req, res){
 };
 
 exports.getAllDetailWorker = function(req, res){
-  db.workers.findOne({Phone_no: req.body.Phone_no})
+  console.log(req.params.id)
+  db.workers.findOne({_id: req.params.id})
   .then(function(newUser){
     res.status(201).json(newUser);
   })

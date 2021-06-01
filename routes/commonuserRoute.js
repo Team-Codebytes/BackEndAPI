@@ -4,8 +4,8 @@ var db = require('../models/index');
 var helpers = require('../helpers/commonuserApi');
 
 
-router.route("/")
-	.post(helpers.getAllDetailCommonUser)
+router.route("/:id")
+	.get(helpers.getAllDetailCommonUser)
 
 
 router.route("/create")

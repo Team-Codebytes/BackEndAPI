@@ -12,7 +12,9 @@ router.route("/Login")
 
 router.route("/")
 	.get(helpers.getWorkers)
-	.post(helpers.getAllDetailWorker)
+
+router.route("/:id")	
+	.get(helpers.getAllDetailWorker)
 
 
 

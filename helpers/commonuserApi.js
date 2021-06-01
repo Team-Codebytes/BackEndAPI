@@ -54,7 +54,8 @@ exports.getLimitedDetailCommonUser = function(req, res){
 };
 
 exports.getAllDetailCommonUser = function(req, res){
-  db.commonuser.findOne({Phone_no: req.body.phone_no})
+  console.log(req.params.id)
+  db.commonuser.findOne({_id: req.params.id})
   .then(function(newUser){
     res.status(201).json(newUser);
   })
