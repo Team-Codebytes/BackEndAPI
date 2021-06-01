@@ -11,6 +11,7 @@ router.route("/create")
 router.route("/Login")
 	.post(helpers.getLimitedDetailEnterpriceUser)
 
-
+router.route("/LoginV2")
+	.post(helpers.getAllUsersLimitedDetail)
 
 module.exports = router;

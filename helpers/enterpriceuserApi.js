@@ -72,3 +72,35 @@ exports.getLimitedDetailEnterpriceUser = function(req, res){
 		res.send(err);
 	  })
   };
+
+
+  exports.getAllUsersLimitedDetail = function(req, res){
+	console.log(req.body)
+	if(req.body.user_type == "commonuser"){
+		db.commonuser.findOne({Phone_no: req.body.Phone_no, Password: req.body.Password},{Password: 0, Address:0, State:0, City:0, Pincode:0, Aadhar_Card:0})
+		.then(function(newUser){
+			res.status(201).json(newUser);
+		})
+		.catch(function(err){
+			res.send(err);
+		})
+	}else if(req.body.user_type == "enterpriceuser"){
+		db.enterpriceuser.findOne({Email_id: req.body.Email, Password: req.body.Password},{Password: 0, Address:0, State:0, City:0, Pincode:0})
+		.then(function(newUser){
+			res.status(201).json(newUser);
+		})
+		.catch(function(err){
+			res.send(err);
+		})
+	}else if(req.body.user_type == "workers"){
+		db.workers.findOne({Phone_no: req.body.Phone_no, Password: req.body.Password},
+			{Password: 0, Address:0, State:0, City:0, Pincode:0, Work_Category:0, Experience:0, Aadhar_Card:0})
+		.then(function(newUser){
+			res.status(201).json(newUser);
+		})
+		.catch(function(err){
+			res.send(err);
+		})
+	}
+	
+  };

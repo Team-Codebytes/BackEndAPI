@@ -51,6 +51,7 @@ var workersSchema = new mongoose.Schema({
 	},
 	Comments: [{
     	id: String,
+		Name: String,
     	user_type: String,
 		Text: String,
 		default: ""
