@@ -8,8 +8,8 @@ const Grid = require('gridfs-stream');
 
 
 // Mongo URI
-const mongoURI = 'mongodb://localhost/backendapi';
-//const mongoURI = "mongodb+srv://root:root123@apicluster.i3n9h.mongodb.net/backendapi?retryWrites=true&w=majority"
+//const mongoURI = 'mongodb://localhost/backendapi';
+const mongoURI = "mongodb+srv://root:root123@apicluster.i3n9h.mongodb.net/backendapi?retryWrites=true&w=majority"
 // mongodb+srv://codebyte:vishu123@backendapi.cijxr.mongodb.net/todo-list?retryWrites=true&w=majority
 
 // Create mongo connection
