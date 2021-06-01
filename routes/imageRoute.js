@@ -8,8 +8,8 @@ const Grid = require('gridfs-stream');
 
 
 // Mongo URI
-//const mongoURI = 'mongodb://localhost/backendapi';
-const mongoURI = "mongodb+srv://root:root123@apicluster.i3n9h.mongodb.net/backendapi?retryWrites=true&w=majority"
+const mongoURI = 'mongodb://localhost/backendapi';
+//const mongoURI = "mongodb+srv://root:root123@apicluster.i3n9h.mongodb.net/backendapi?retryWrites=true&w=majority"
 // mongodb+srv://codebyte:vishu123@backendapi.cijxr.mongodb.net/todo-list?retryWrites=true&w=majority
 
 // Create mongo connection
@@ -82,84 +82,144 @@ conn.once('open', () => {
 
 router.route("/Get")
 	.post(function(req, res){
-		let data;
 		console.log(req.body);
-		if(req.body.user_type === "commonuser"){
-			db.commonuser.findOne({Phone_no: req.body.Phone_no})
-			.then(function(newUser){
-				console.log(newUser);
-				gfs.files.findOne({ filename: newUser.Profileimg}, (err, file) => {
-					// Check if file
-					if (!file || file.length === 0) {
-					  return res.status(404).json({
-						err: 'No file exists'
-					  });
-					}
-				
-					// Check if image
-					if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-					  // Read output to browser
-					  const readstream = gfs.createReadStream(file.filename);
-					  readstream.pipe(res);
-					} else {
-					  res.status(404).json({
-						err: 'Not an image'
-					  });
-					}
-				});	
-			})
-			.catch(err => res.status(500).json(err))
-		}else if(req.body.user_type === "worker"){
-			db.workers.findOne({Phone_no: req.body.Phone_no})
-			.then(function(newUser){
-				console.log(newUser);
-				gfs.files.findOne({ filename: newUser.Profileimg}, (err, file) => {
-					// Check if file
-					if (!file || file.length === 0) {
-					  return res.status(404).json({
-						err: 'No file exists'
-					  });
-					}
-				
-					// Check if image
-					if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-					  // Read output to browser
-					  const readstream = gfs.createReadStream(file.filename);
-					  readstream.pipe(res);
-					} else {
-					  res.status(404).json({
-						err: 'Not an image'
-					  });
-					}
-				});	
-			})
-			.catch(err => res.status(500).json(err))
-		}else if(req.body.user_type === "enterpriceuser"){
-			db.enterpriceuser.findOne({Email_id: req.body.Email})
-			.then(function(newUser){
-				console.log(newUser);
-				gfs.files.findOne({ filename: newUser.Profileimg}, (err, file) => {
-					// Check if file
-					if (!file || file.length === 0) {
-					  return res.status(404).json({
-						err: 'No file exists'
-					  });
-					}
-				
-					// Check if image
-					if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-					  // Read output to browser
-					  const readstream = gfs.createReadStream(file.filename);
-					  readstream.pipe(res);
-					} else {
-					  res.status(404).json({
-						err: 'Not an image'
-					  });
-					}
-				});	
-			})
-			.catch(err => res.status(500).json(err))
-		}	
+		if(req.body.image_cat === 'Aadhar Card'){
+			if(req.body.user_type === "commonuser"){
+				db.commonuser.findOne({Phone_no: req.body.Phone_no})
+				.then(function(newUser){
+					console.log(newUser);
+					gfs.files.findOne({ filename: newUser.Aadharimg }, (err, file) => {
+						// Check if file
+						if (!file || file.length === 0) {
+						return res.status(404).json({
+							err: 'No file exists'
+						});
+						}
+						if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'){
+							file.isImage = true;
+						}else{
+							file.isImage = false;
+						}
+						// File exists
+						console.log("File Data: "+ file);
+						return res.json(file);
+					});	
+				})
+				.catch(err => res.status(500).json(err))
+			}else if(req.body.user_type === "worker"){
+				db.workers.findOne({Phone_no: req.body.Phone_no})
+				.then(function(newUser){
+					console.log(newUser);
+					gfs.files.findOne({ filename: newUser.Aadharimg }, (err, file) => {
+						// Check if file
+						if (!file || file.length === 0) {
+						return res.status(404).json({
+							err: 'No file exists'
+						});
+						}
+						if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'){
+							file.isImage = true;
+						}else{
+							file.isImage = false;
+						}
+						// File exists
+						console.log("File Data: "+ file);
+						return res.json(file);
+					});	
+				})
+				.catch(err => res.status(500).json(err))
+			}else if(req.body.user_type === "enterpriceuser"){
+				db.enterpriceuser.findOne({Email_id: req.body.Email})
+				.then(function(newUser){
+					console.log(newUser);
+					gfs.files.findOne({ filename: newUser.Aadharimg }, (err, file) => {
+						// Check if file
+						if (!file || file.length === 0) {
+						return res.status(404).json({
+							err: 'No file exists'
+						});
+						}
+						if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'){
+							file.isImage = true;
+						}else{
+							file.isImage = false;
+						}
+						// File exists
+						console.log("File Data: "+ file);
+						return res.json(file);
+					});	
+				})
+				.catch(err => res.status(500).json(err))
+			}
+		}else if(req.body.image_cat ==='Profile'){
+			if(req.body.user_type === "commonuser"){
+				db.commonuser.findOne({Phone_no: req.body.Phone_no})
+				.then(function(newUser){
+					console.log(newUser);
+					gfs.files.findOne({ filename: newUser.Profileimg }, (err, file) => {
+						// Check if file
+						if (!file || file.length === 0) {
+						return res.status(404).json({
+							err: 'No file exists'
+						});
+						}
+						if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'){
+							file.isImage = true;
+						}else{
+							file.isImage = false;
+						}
+						// File exists
+						console.log("File Data: "+ file);
+						return res.json(file);
+					});	
+				})
+				.catch(err => res.status(500).json(err))
+			}else if(req.body.user_type === "worker"){
+				db.workers.findOne({Phone_no: req.body.Phone_no})
+				.then(function(newUser){
+					console.log(newUser);
+					gfs.files.findOne({ filename: newUser.Profileimg }, (err, file) => {
+						// Check if file
+						if (!file || file.length === 0) {
+						return res.status(404).json({
+							err: 'No file exists'
+						});
+						}
+						if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'){
+							file.isImage = true;
+						}else{
+							file.isImage = false;
+						}
+						// File exists
+						console.log("File Data: "+ file);
+						return res.json(file);
+					});	
+				})
+				.catch(err => res.status(500).json(err))
+			}else if(req.body.user_type === "enterpriceuser"){
+				db.enterpriceuser.findOne({Email_id: req.body.Email})
+				.then(function(newUser){
+					console.log(newUser);
+					gfs.files.findOne({ filename: newUser.Profileimg }, (err, file) => {
+						// Check if file
+						if (!file || file.length === 0) {
+						return res.status(404).json({
+							err: 'No file exists'
+						});
+						}
+						if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'){
+							file.isImage = true;
+						}else{
+							file.isImage = false;
+						}
+						// File exists
+						console.log("File Data: "+ file);
+						return res.json(file);
+					});	
+				})
+				.catch(err => res.status(500).json(err))
+			}
+		}		
 	});
 
 
@@ -170,7 +230,34 @@ router.route("/")
 	.post(helpers.upload.single('file'), function(req, res){
 		console.log(req.body, req.file.filename);
 		if(req.body.image_cat === 'Aadhar Card'){
-			res.json({file: req.file});
+			if(req.body.user_type === 'commonuser'){
+				db.commonuser.findOne({Phone_no: req.body.Phone_no})
+				.then(function(User){
+					console.log(User)
+					User.Aadharimg = req.file.filename;
+					User.save();
+					res.status(201).json(User);
+				})
+				.catch(err => res.status(500).json(err))
+			}else if(req.body.user_type === 'worker'){
+				db.workers.findOne({Phone_no: req.body.Phone_no})
+				.then(function(User){
+					console.log(User)
+					User.Aadharimg = req.file.filename;
+					User.save();
+					res.status(201).json(User);
+				})
+				.catch(err => res.status(500).json(err))
+			}else if(req.body.user_type === 'enterpriceuser'){
+				db.enterpriceuser.findOne({Email_id: req.body.Email})
+				.then(function(User){
+					console.log(User)
+					User.Aadharimg = req.file.filename;
+					User.save();
+					res.status(201).json(User);
+				})
+				.catch(err => res.status(500).json(err))
+			}
 		}else if(req.body.image_cat ==='Profile'){
 			if(req.body.user_type === 'commonuser'){
 				db.commonuser.findOne({Phone_no: req.body.Phone_no})
