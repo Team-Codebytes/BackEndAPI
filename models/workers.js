@@ -49,6 +49,12 @@ var workersSchema = new mongoose.Schema({
 		type: String,
 		require: "Aadhar_Card number cannot be blank"
 	},
+	Comments: [{
+    	id: String,
+    	user_type: String,
+		Text: String,
+		default: ""
+    }],
 	user_type:{
 		type: String,
 		default: 'worker'

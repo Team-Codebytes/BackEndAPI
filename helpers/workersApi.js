@@ -78,5 +78,18 @@ exports.getAllDetailWorker = function(req, res){
   })
   .catch(function(err){
       res.send(err);
-    })
+  })
 };
+
+exports.addComments = function(req, res){
+  console.log(req.params.id);
+  db.workers.findOne({_id: req.params.id})
+  .then(function(newComment){
+    newComment.Comments.push(req.body);
+    newComment.save();
+    res.status(201).json(newComment);
+  })
+  .catch(function(err){
+    res.send(err);
+  })
+}

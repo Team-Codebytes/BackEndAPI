@@ -17,5 +17,9 @@ router.route("/:id")
 	.get(helpers.getAllDetailWorker)
 
 
+router.route("/:id/AddComment")	
+	.post(helpers.addComments)
+
+
 
 module.exports = router;
