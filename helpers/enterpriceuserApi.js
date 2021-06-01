@@ -51,3 +51,24 @@ exports.getEnterpriceUser = function(req, res){
   		res.send(err);
   	})
 };
+
+exports.getLimitedDetailEnterpriceUser = function(req, res){
+	db.enterpriceuser.findOne({Email_id: req.params.Email, Password: req.body.Password},{Password: 0, Address:0, State:0, City:0, Pincode:0})
+	.then(function(newUser){
+	  res.status(201).json(newUser);
+	})
+	.catch(function(err){
+		res.send(err);
+	  })
+  };
+
+  exports.getAllDetailEnterpriceUser = function(req, res){
+	console.log(req.params.id)
+	db.enterpriceuser.findOne({_id: req.params.id})
+	.then(function(newUser){
+	  res.status(201).json(newUser);
+	})
+	.catch(function(err){
+		res.send(err);
+	  })
+  };
