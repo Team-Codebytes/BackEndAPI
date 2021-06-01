@@ -27,6 +27,15 @@ var jobPostSchema = new mongoose.Schema({
     	},
     	Phone_no: Number
     },
+	State: {
+		type: String
+	},
+	City: {
+		type: String
+	},
+	Address:{
+		type: String
+	},
 	date: {
 		type: Date,
 		default: Date.now
