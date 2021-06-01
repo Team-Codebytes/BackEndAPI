@@ -9,7 +9,7 @@ router.route("/create")
 	.post(helpers.createEnterpriceUser)
 
 router.route("/Login")
-	.get(helpers.getLimitedDetailEnterpriceUser)
+	.post(helpers.getLimitedDetailEnterpriceUser)
 
 
 
