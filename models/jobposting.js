@@ -25,7 +25,8 @@ var jobPostSchema = new mongoose.Schema({
     		type: mongoose.Schema.Types.ObjectId,
     		ref: "commonuser"
     	},
-    	Phone_no: Number
+    	Phone_no: Number,
+		Name: String
     },
 	State: {
 		type: String
