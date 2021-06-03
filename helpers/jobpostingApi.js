@@ -20,3 +20,18 @@ exports.getJob = function (req, res) {
         res.send(err);
     })
 };
+
+
+exports.deleteJob = function(req, res){
+    db.jobposting.remove({_id: req.params.id})
+    .then(function(){
+        
+        return res.status(404).json({
+            message: 'Job with _id: '+req.params.id+' deleted successfully',
+            success: true
+        })
+    })
+    .catch(function(err){
+        res.send(err);
+    })
+}

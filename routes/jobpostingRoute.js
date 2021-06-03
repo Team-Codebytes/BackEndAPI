@@ -11,4 +11,8 @@ router.route("/")
 router.route("/create")
 	.post(helpers.createJob)
 
+
+router.route("/:id/delete")
+	.delete(helpers.deleteJob)
+
 module.exports = router;
