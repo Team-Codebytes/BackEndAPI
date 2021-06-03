@@ -80,12 +80,12 @@ conn.once('open', () => {
 // 		}
 // 	});
 
-router.route("/Get")
+router.route("/:id/Get")
 	.post(function(req, res){
 		console.log(req.body);
 		if(req.body.image_cat === 'Aadhar Card'){
 			if(req.body.user_type === "commonuser"){
-				db.commonuser.findOne({Phone_no: req.body.Phone_no})
+				db.commonuser.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
 					gfs.files.findOne({ filename: newUser.Aadharimg }, (err, file) => {
@@ -107,7 +107,7 @@ router.route("/Get")
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user_type === "worker"){
-				db.workers.findOne({Phone_no: req.body.Phone_no})
+				db.workers.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
 					gfs.files.findOne({ filename: newUser.Aadharimg }, (err, file) => {
@@ -129,7 +129,7 @@ router.route("/Get")
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user_type === "enterpriceuser"){
-				db.enterpriceuser.findOne({Email_id: req.body.Email})
+				db.enterpriceuser.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
 					gfs.files.findOne({ filename: newUser.Aadharimg }, (err, file) => {
@@ -153,7 +153,7 @@ router.route("/Get")
 			}
 		}else if(req.body.image_cat ==='Profile'){
 			if(req.body.user_type === "commonuser"){
-				db.commonuser.findOne({Phone_no: req.body.Phone_no})
+				db.commonuser.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
 					gfs.files.findOne({ filename: newUser.Profileimg }, (err, file) => {
@@ -175,7 +175,7 @@ router.route("/Get")
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user_type === "worker"){
-				db.workers.findOne({Phone_no: req.body.Phone_no})
+				db.workers.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
 					gfs.files.findOne({ filename: newUser.Profileimg }, (err, file) => {
@@ -197,7 +197,7 @@ router.route("/Get")
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user_type === "enterpriceuser"){
-				db.enterpriceuser.findOne({Email_id: req.body.Email})
+				db.enterpriceuser.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
 					gfs.files.findOne({ filename: newUser.Profileimg }, (err, file) => {
@@ -226,12 +226,12 @@ router.route("/Get")
 
 
 
-router.route("/")
+router.route("/:id")
 	.post(helpers.upload.single('file'), function(req, res){
 		console.log(req.body, req.file.filename);
 		if(req.body.image_cat === 'Aadhar Card'){
 			if(req.body.user_type === 'commonuser'){
-				db.commonuser.findOne({Phone_no: req.body.Phone_no})
+				db.commonuser.findOne({_id: req.params.id})
 				.then(function(User){
 					console.log(User)
 					User.Aadharimg = req.file.filename;
@@ -240,7 +240,7 @@ router.route("/")
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user_type === 'worker'){
-				db.workers.findOne({Phone_no: req.body.Phone_no})
+				db.workers.findOne({_id: req.params.id})
 				.then(function(User){
 					console.log(User)
 					User.Aadharimg = req.file.filename;
@@ -249,7 +249,7 @@ router.route("/")
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user_type === 'enterpriceuser'){
-				db.enterpriceuser.findOne({Email_id: req.body.Email})
+				db.enterpriceuser.findOne({_id: req.params.id})
 				.then(function(User){
 					console.log(User)
 					User.Aadharimg = req.file.filename;
@@ -260,7 +260,7 @@ router.route("/")
 			}
 		}else if(req.body.image_cat ==='Profile'){
 			if(req.body.user_type === 'commonuser'){
-				db.commonuser.findOne({Phone_no: req.body.Phone_no})
+				db.commonuser.findOne({_id: req.params.id})
 				.then(function(User){
 					console.log(User)
 					User.Profileimg = req.file.filename;
@@ -269,7 +269,7 @@ router.route("/")
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user_type === 'worker'){
-				db.workers.findOne({Phone_no: req.body.Phone_no})
+				db.workers.findOne({_id: req.params.id})
 				.then(function(User){
 					console.log(User)
 					User.Profileimg = req.file.filename;
@@ -278,7 +278,7 @@ router.route("/")
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user_type === 'enterpriceuser'){
-				db.enterpriceuser.findOne({Email_id: req.body.Email})
+				db.enterpriceuser.findOne({_id: req.params.id})
 				.then(function(User){
 					console.log(User)
 					User.Profileimg = req.file.filename;
