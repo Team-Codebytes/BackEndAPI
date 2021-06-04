@@ -69,6 +69,10 @@ var workersSchema = new mongoose.Schema({
 	},
 	Aadharimg: {
 		type: String
+	},
+	Services:{
+		type: String,
+		default: ""
 	}
 });
 
