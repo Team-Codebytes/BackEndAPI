@@ -54,6 +54,7 @@ var workersSchema = new mongoose.Schema({
 		Name: String,
     	user_type: String,
 		Text: String,
+		date: Date,
 		default: ""
     }],
 	user_type:{
