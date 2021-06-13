@@ -80,11 +80,11 @@ conn.once('open', () => {
 // 		}
 // 	});
 
-router.route("/:id/Get")
-	.post(function(req, res){
+router.route("/:id/:user_type/:image_cat")
+	.get(function(req, res){
 		console.log(req.body);
-		if(req.body.image_cat === 'Aadhar Card'){
-			if(req.body.user_type === "commonuser"){
+		if(req.params.image_cat === 'Aadhar Card'){
+			if(req.params.user_type === "commonuser"){
 				db.commonuser.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
@@ -106,7 +106,7 @@ router.route("/:id/Get")
 					});	
 				})
 				.catch(err => res.status(500).json(err))
-			}else if(req.body.user_type === "worker"){
+			}else if(req.params.user_type === "worker"){
 				db.workers.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
@@ -128,7 +128,7 @@ router.route("/:id/Get")
 					});	
 				})
 				.catch(err => res.status(500).json(err))
-			}else if(req.body.user_type === "enterpriceuser"){
+			}else if(req.params.user_type === "enterpriceuser"){
 				db.enterpriceuser.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
@@ -151,8 +151,8 @@ router.route("/:id/Get")
 				})
 				.catch(err => res.status(500).json(err))
 			}
-		}else if(req.body.image_cat ==='Profile'){
-			if(req.body.user_type === "commonuser"){
+		}else if(req.params.image_cat ==='Profile'){
+			if(req.params.user_type === "commonuser"){
 				db.commonuser.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
@@ -177,7 +177,7 @@ router.route("/:id/Get")
 					  });	
 				})
 				.catch(err => res.status(500).json(err))
-			}else if(req.body.user_type === "worker"){
+			}else if(req.params.user_type === "worker"){
 				db.workers.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
@@ -199,7 +199,7 @@ router.route("/:id/Get")
 					});	
 				})
 				.catch(err => res.status(500).json(err))
-			}else if(req.body.user_type === "enterpriceuser"){
+			}else if(req.params.user_type === "enterpriceuser"){
 				db.enterpriceuser.findOne({_id: req.params.id})
 				.then(function(newUser){
 					console.log(newUser);
