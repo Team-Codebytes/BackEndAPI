@@ -8,8 +8,8 @@ const Grid = require('gridfs-stream');
 
 
 // Mongo URI
-//const mongoURI = 'mongodb://localhost/backendapi';
-const mongoURI = "mongodb+srv://root:root123@apicluster.i3n9h.mongodb.net/backendapi?retryWrites=true&w=majority"
+const mongoURI = 'mongodb://localhost/backendapi';
+//const mongoURI = "mongodb+srv://root:root123@apicluster.i3n9h.mongodb.net/backendapi?retryWrites=true&w=majority"
 // mongodb+srv://codebyte:vishu123@backendapi.cijxr.mongodb.net/todo-list?retryWrites=true&w=majority
 
 // Create mongo connection
@@ -159,19 +159,22 @@ router.route("/:id/Get")
 					gfs.files.findOne({ filename: newUser.Profileimg }, (err, file) => {
 						// Check if file
 						if (!file || file.length === 0) {
-						return res.status(404).json({
+						  return res.status(404).json({
 							err: 'No file exists'
-						});
+						  });
 						}
-						if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'){
-							file.isImage = true;
-						}else{
-							file.isImage = false;
+					
+						// Check if image
+						if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+						  // Read output to browser
+						  const readstream = gfs.createReadStream(file.filename);
+						  readstream.pipe(res);
+						} else {
+						  res.status(404).json({
+							err: 'Not an image'
+						  });
 						}
-						// File exists
-						console.log("File Data: "+ file);
-						return res.json(file);
-					});	
+					  });	
 				})
 				.catch(err => res.status(500).json(err))
 			}else if(req.body.user_type === "worker"){
